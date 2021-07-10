@@ -1,5 +1,5 @@
 input.call-picker {
-  border: 1px solid #AAA;
+  border: 1px solid #aaa;
   color: #666;
   text-transform: uppercase;
   float: left;
@@ -11,11 +11,11 @@ input.call-picker {
 
 .color-picker {
   width: 130px;
-  background: #F3F3F3;
+  background: #f3f3f3;
   height: 81px;
   padding: 5px;
   border: 5px solid #fff;
-  box-shadow: 0px 0px 3px 1px #DDD;
+  box-shadow: 0px 0px 3px 1px #ddd;
   position: absolute;
   top: 61px;
   left: 2px;
@@ -24,7 +24,7 @@ input.call-picker {
 .color-holder {
   background: #fff;
   cursor: pointer;
-  border: 1px solid #AAA;
+  border: 1px solid #aaa;
   width: 40px;
   height: 36px;
   float: left;
@@ -32,7 +32,7 @@ input.call-picker {
 }
 
 input.stroke_width_picker {
-  border: 1px solid #AAA;
+  border: 1px solid #aaa;
   color: #666;
   text-transform: uppercase;
   float: left;
@@ -45,14 +45,21 @@ input.stroke_width_picker {
 p {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  color: #DDD;
+  color: #ddd;
 }
 
 button {
   margin-left: 1rem;
 }
 
-html, body {
+html,
+body {
+  position: absolute;
+  overflow: hidden;
+  margin: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
   height: 100%;
   background-color: #373d55;
 }
