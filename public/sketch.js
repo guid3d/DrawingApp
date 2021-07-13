@@ -2,18 +2,34 @@ let socket
 let color = '#000'
 let strokeWidth = 4
 let cv
+let socketRoom = '8845'
+
+// Sending data to the socket
+function sendmouse(x, y, px, py) {
+	const data = {
+		x,
+		y,
+		px,
+		py,
+		color,
+		strokeWidth,
+	}
+
+	socket.emit('tigger', { channel: 'sendData', room: socketRoom, data })
+}
 
 function setup() {
 	// Creating canvas
-	cv = createCanvas(windowWidth, windowHeight)
+	cv = createCanvas(1000, 700)
 	centerCanvas()
 	cv.background(255, 255, 255)
 
 	// Start the socket connection
-	socket = io.connect('http://localhost:3000')
-
+	socket = io('http://n.med.cmu.ac.th:3000')
+	socket.emit('subscribe', socketRoom)
 	// Callback function
-	socket.on('mouse', data => {
+	socket.on('sendData', data => {
+		console.log(data);
 		stroke(data.color)
 		strokeWeight(data.strokeWidth)
 		line(data.x, data.y, data.px, data.py)
@@ -47,7 +63,7 @@ function setup() {
 
 function windowResized() {
 	centerCanvas()
-	cv.resizeCanvas(windowWidth / 2, windowHeight / 2, false)
+	// cv.resizeCanvas(windowWidth / 2, windowHeight / 2, false)
 }
 
 
@@ -68,16 +84,3 @@ function mouseDragged() {
 	sendmouse(mouseX, mouseY, pmouseX, pmouseY)
 }
 
-// Sending data to the socket
-function sendmouse(x, y, pX, pY) {
-	const data = {
-		x: x,
-		y: y,
-		px: pX,
-		py: pY,
-		color: color,
-		strokeWidth: strokeWidth,
-	}
-
-	socket.emit('mouse', data)
-}
